@@ -1,0 +1,15 @@
+<section class="archive">
+  <h1 class="page-title">Archives</h1>
+  <% var lastYear = 0 %>
+  <% page.posts.each(function(post) { %>
+    <% var postYear = date(post.date, 'YYYY') %>
+    <% if (postYear !== lastYear) { %>
+      <% lastYear = postYear %>
+      <h2 class="archive-year"><%= postYear %></h2>
+    <% } %>
+    <div class="archive-item">
+      <time datetime="<%= date_xml(post.date) %>"><%= date(post.date, theme.date_format) %></time>
+      <a href="<%- url_for(post.path) %>"><%= post.title %></a>
+    </div>
+  <% }) %>
+</section>

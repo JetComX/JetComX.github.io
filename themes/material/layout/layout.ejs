@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="<%= config.language %>" data-theme="<%= theme.color_scheme || 'auto' %>">
+<%- partial('partial/head') %>
+<body>
+  <div class="container">
+    <%- partial('partial/header') %>
+    <main class="main">
+      <%- body %>
+    </main>
+    <%- partial('partial/footer') %>
+  </div>
+  <script>
+    // Auto dark/light mode
+    (function(){
+      var scheme = '<%= theme.color_scheme || "auto" %>';
+      var html = document.documentElement;
+      if (scheme === 'auto') {
+        var dark = window.matchMedia('(prefers-color-scheme: dark)');
+        html.setAttribute('data-theme', dark.matches ? 'dark' : 'light');
+        dark.addEventListener('change', function(e) {
+          html.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

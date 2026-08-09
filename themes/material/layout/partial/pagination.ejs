@@ -1,0 +1,11 @@
+<% if (page.total > 1) { %>
+<nav class="pagination">
+  <% if (page.prev) { %>
+  <a class="page-link prev" href="<%- url_for(page.prev_link) %>">&larr; Newer</a>
+  <% } %>
+  <span class="page-info"><%= page.current %> / <%= page.total %></span>
+  <% if (page.next) { %>
+  <a class="page-link next" href="<%- url_for(page.next_link) %>">Older &rarr;</a>
+  <% } %>
+</nav>
+<% } %>

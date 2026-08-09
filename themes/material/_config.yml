@@ -1,0 +1,22 @@
+# Material Design 3 Theme
+# Minimal clean blog theme with MD3 design tokens
+
+# Navigation
+nav:
+  Archives: /archives
+
+# Footer
+footer:
+  since: 2026
+
+# Color scheme: auto (follows system), light, dark
+color_scheme: auto
+
+# Show excerpt on index page
+excerpt: true
+
+# Code highlight theme
+highlight: github-dark
+
+# Post date format (moment.js)
+date_format: YYYY-MM-DD
