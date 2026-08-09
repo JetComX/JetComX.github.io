@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Welcome to here</title>
+<meta name="description" content="">
+<meta name="author" content="JetComX">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+
+<body>
+  <div class="container">
+    <header class="header">
+  <h1 class="site-title"><a href="/">Welcome to here</a></h1>
+  
+  <nav class="nav">
+    
+    <a class="nav-link" href="/archives">Archives</a>
+    
+  </nav>
+</header>
+
+    <main class="main">
+      <section class="archive">
+  <h1 class="page-title">Archives</h1>
+  
+  
+    
+    
+      
+      <h2 class="archive-year">2026</h2>
+    
+    <div class="archive-item">
+      <time datetime="2026-08-09T13:58:10.246Z">2026-08-09</time>
+      <a href="/2026/08/09/hello-world/">Hello World</a>
+    </div>
+  
+</section>
+
+    </main>
+    <footer class="footer">
+  <p>&copy; 2026 JetComX. Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>.</p>
+</footer>
+
+  </div>
+  <script>
+    // Auto dark/light mode
+    (function(){
+      var scheme = 'auto';
+      var html = document.documentElement;
+      if (scheme === 'auto') {
+        var dark = window.matchMedia('(prefers-color-scheme: dark)');
+        html.setAttribute('data-theme', dark.matches ? 'dark' : 'light');
+        dark.addEventListener('change', function(e) {
+          html.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
