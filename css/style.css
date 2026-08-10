@@ -1,7 +1,6 @@
 /* Material Design 3 — Minimal Blog Theme */
 /* Design tokens */
-:root,
-[data-theme="light"] {
+:root {
   /* Primary */
   --md-primary: #6750A4;
   --md-on-primary: #FFFFFF;
@@ -20,6 +19,27 @@
 
   --bg: #FFFBFF;
   --text: #1C1B1F;
+}
+
+/* Explicit light theme (for browsers that ignore :root) */
+html.light {
+  --md-primary: #6750A4;
+  --md-on-primary: #FFFFFF;
+  --md-primary-container: #EADDFF;
+  --md-on-primary-container: #21005D;
+
+  --md-surface: #FFFBFE;
+  --md-on-surface: #1C1B1F;
+  --md-surface-variant: #E7E0EC;
+  --md-on-surface-variant: #49454F;
+  --md-surface-container-low: #F7F2FA;
+  --md-surface-container: #F3EDF7;
+  --md-surface-container-high: #ECE6F0;
+  --md-surface-container-highest: #E6E0E9;
+
+  --bg: #FFFBFF;
+  --text: #1C1B1F;
+}
 
   /* Secondary */
   --md-secondary: #625B71;
@@ -96,7 +116,7 @@
 }
 
 /* Dark theme */
-[data-theme="dark"] {
+html.dark {
   --md-primary: #D0BCFF;
   --md-on-primary: #381E72;
   --md-primary-container: #4F378B;
@@ -223,17 +243,13 @@ a:focus-visible {
 }
 
 .icon-moon { display: none; }
-[data-theme="dark"] .icon-sun { display: none; }
-[data-theme="dark"] .icon-moon { display: block; }
+html.dark .icon-sun { display: none; }
+html.dark .icon-moon { display: block; }
 
 .theme-toggle:focus-visible {
   outline: 2px solid var(--md-primary);
   outline-offset: 2px;
 }
-
-.icon-moon { display: none; }
-[data-theme="dark"] .icon-sun { display: none; }
-[data-theme="dark"] .icon-moon { display: block; }
 
 /* Header */
 .header {
