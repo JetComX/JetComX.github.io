@@ -10,17 +10,44 @@
     <%- partial('partial/footer') %>
   </div>
   <script>
-    // Auto dark/light mode
     (function(){
-      var scheme = '<%= theme.color_scheme || "auto" %>';
       var html = document.documentElement;
-      if (scheme === 'auto') {
-        var dark = window.matchMedia('(prefers-color-scheme: dark)');
-        html.setAttribute('data-theme', dark.matches ? 'dark' : 'light');
-        dark.addEventListener('change', function(e) {
-          html.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+      var scheme = '<%= theme.color_scheme || "auto" %>';
+      var saved = localStorage.getItem('theme');
+
+      function setTheme(t) {
+        if (t === 'auto') {
+          var dark = window.matchMedia('(prefers-color-scheme: dark)');
+          html.setAttribute('data-theme', dark.matches ? 'dark' : 'light');
+        } else {
+          html.setAttribute('data-theme', t);
+        }
+      }
+
+      if (saved) {
+        setTheme(saved);
+      } else if (scheme === 'auto') {
+        setTheme('auto');
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+          if (!localStorage.getItem('theme') || localStorage.getItem('theme') === 'auto') {
+            html.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+          }
         });
       }
+
+      document.getElementById('themeToggle').addEventListener('click', function() {
+        var current = html.getAttribute('data-theme');
+        var next;
+        if (current === 'dark') {
+          next = 'light';
+        } else if (current === 'light') {
+          next = scheme === 'auto' ? 'auto' : 'dark';
+        } else {
+          next = 'dark';
+        }
+        localStorage.setItem('theme', next);
+        setTheme(next);
+      });
     })();
   </script>
 </body>
