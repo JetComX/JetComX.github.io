@@ -70,7 +70,7 @@
   
   <article class="post-card">
     <h2 class="post-title">Hello World</h2>
-    <time class="post-date" datetime="2026-08-10T01:23:26.456Z">2026-08-10</time>
+    <time class="post-date" datetime="2026-08-10T01:30:36.004Z">2026-08-10</time>
     
   </article>
   
@@ -133,19 +133,10 @@
         });
       } catch(e) {}
 
-      // Toggle function exposed globally
+      // Toggle function exposed globally — simple light/dark only
       window.toggleTheme = function() {
         var cur = html.getAttribute('data-theme');
-        var next;
-        if (cur === 'dark') {
-          next = 'light';
-        } else if (cur === 'light' && scheme === 'auto') {
-          next = 'auto';
-        } else if (cur === 'light') {
-          next = 'dark';
-        } else {
-          next = 'dark';
-        }
+        var next = (cur === 'dark') ? 'light' : 'dark';
         saveTheme(next);
         applyTheme(next);
       };

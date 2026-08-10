@@ -1,11 +1,25 @@
 /* Material Design 3 — Minimal Blog Theme */
 /* Design tokens */
-:root {
+:root,
+[data-theme="light"] {
   /* Primary */
   --md-primary: #6750A4;
   --md-on-primary: #FFFFFF;
   --md-primary-container: #EADDFF;
   --md-on-primary-container: #21005D;
+
+  /* Surface */
+  --md-surface: #FFFBFE;
+  --md-on-surface: #1C1B1F;
+  --md-surface-variant: #E7E0EC;
+  --md-on-surface-variant: #49454F;
+  --md-surface-container-low: #F7F2FA;
+  --md-surface-container: #F3EDF7;
+  --md-surface-container-high: #ECE6F0;
+  --md-surface-container-highest: #E6E0E9;
+
+  --bg: #FFFBFF;
+  --text: #1C1B1F;
 
   /* Secondary */
   --md-secondary: #625B71;
@@ -24,16 +38,6 @@
   --md-on-error: #FFFFFF;
   --md-error-container: #F9DEDC;
   --md-on-error-container: #410E0B;
-
-  /* Surface */
-  --md-surface: #FFFBFE;
-  --md-on-surface: #1C1B1F;
-  --md-surface-variant: #E7E0EC;
-  --md-on-surface-variant: #49454F;
-  --md-surface-container-low: #F7F2FA;
-  --md-surface-container: #F3EDF7;
-  --md-surface-container-high: #ECE6F0;
-  --md-surface-container-highest: #E6E0E9;
 
   /* Inverse */
   --md-inverse-surface: #313033;
@@ -132,6 +136,9 @@
   --md-elevation-1: 0 1px 2px 0 rgba(0,0,0,0.6), 0 1px 3px 1px rgba(0,0,0,0.4);
   --md-elevation-2: 0 1px 2px 0 rgba(0,0,0,0.6), 0 2px 6px 2px rgba(0,0,0,0.4);
   --md-elevation-3: 0 4px 8px 3px rgba(0,0,0,0.4), 0 1px 3px 0 rgba(0,0,0,0.6);
+
+  --bg: #1C1B1F;
+  --text: #E6E1E5;
 }
 
 /* Reset */
@@ -144,8 +151,8 @@
 /* Base */
 html {
   font: var(--md-typescale-body-large);
-  color: var(--md-on-surface);
-  background: var(--md-surface);
+  color: var(--text);
+  background: var(--bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
@@ -153,7 +160,8 @@ html {
 
 body {
   min-height: 100vh;
-  background: var(--md-surface);
+  background: var(--bg);
+  color: var(--text);
   transition: background var(--transition), color var(--transition);
 }
 
