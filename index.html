@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
+<html lang="en" data-theme="light">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Welcome to here</title>
@@ -70,7 +70,7 @@
   
   <article class="post-card">
     <h2 class="post-title">Hello World</h2>
-    <time class="post-date" datetime="2026-08-10T01:34:16.935Z">2026-08-10</time>
+    <time class="post-date" datetime="2026-08-10T01:36:13.548Z">2026-08-10</time>
     
   </article>
   
@@ -110,8 +110,7 @@
         } else {
           currentTheme = t;
         }
-        html.classList.remove('light', 'dark');
-        html.classList.add(currentTheme);
+        html.setAttribute('data-theme', currentTheme);
       }
 
       // Init
@@ -134,9 +133,9 @@
         });
       } catch(e) {}
 
-      // Toggle function — simple light/dark via class
+      // Toggle function exposed globally — simple light/dark only
       window.toggleTheme = function() {
-        var cur = html.classList.contains('dark') ? 'dark' : 'light';
+        var cur = html.getAttribute('data-theme');
         var next = (cur === 'dark') ? 'light' : 'dark';
         saveTheme(next);
         applyTheme(next);
