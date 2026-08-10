@@ -70,7 +70,7 @@
   
   <article class="post-card">
     <h2 class="post-title">Hello World</h2>
-    <time class="post-date" datetime="2026-08-10T01:36:13.548Z">2026-08-10</time>
+    <time class="post-date" datetime="2026-08-10T01:37:09.236Z">2026-08-10</time>
     
   </article>
   
@@ -111,6 +111,14 @@
           currentTheme = t;
         }
         html.setAttribute('data-theme', currentTheme);
+        // Direct inline styles for guaranteed cross-browser background/text
+        if (currentTheme === 'dark') {
+          html.style.backgroundColor = '#1C1B1F';
+          html.style.color = '#E6E1E5';
+        } else {
+          html.style.backgroundColor = '#FFFBFE';
+          html.style.color = '#1C1B1F';
+        }
       }
 
       // Init
