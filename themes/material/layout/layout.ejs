@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<%= config.language %>" data-theme="<%= theme.color_scheme || 'auto' %>">
+<html lang="<%= config.language %>" data-theme="light">
 <%- partial('partial/head') %>
 <body>
   <div class="container">
@@ -13,46 +13,67 @@
     (function(){
       var html = document.documentElement;
       var scheme = '<%= theme.color_scheme || "auto" %>';
+      var currentTheme = scheme !== 'auto' ? scheme : 'light';
 
-      function setTheme(t) {
+      // Safe localStorage wrapper
+      function loadTheme() {
+        try {
+          return localStorage.getItem('theme');
+        } catch(e) {
+          return null;
+        }
+      }
+      function saveTheme(t) {
+        try {
+          localStorage.setItem('theme', t);
+        } catch(e) {}
+      }
+
+      function applyTheme(t) {
         if (t === 'auto') {
-          var dark = window.matchMedia('(prefers-color-scheme: dark)');
-          html.setAttribute('data-theme', dark.matches ? 'dark' : 'light');
+          currentTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         } else {
-          html.setAttribute('data-theme', t);
+          currentTheme = t;
         }
+        html.setAttribute('data-theme', currentTheme);
       }
 
-      // Apply initial theme
-      var saved = localStorage.getItem('theme');
-      var initial = saved || scheme;
-      setTheme(initial);
+      // Init
+      var saved = loadTheme();
+      if (saved) {
+        applyTheme(saved);
+      } else if (scheme === 'auto') {
+        applyTheme('auto');
+      } else {
+        applyTheme(scheme);
+      }
 
-      // Listen for system changes when in auto mode
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
-        var current = localStorage.getItem('theme');
-        if (!current || current === 'auto') {
-          html.setAttribute('data-theme', e.matches ? 'dark' : 'light');
-        }
-      });
-
-      // Toggle button
-      var btn = document.getElementById('themeToggle');
-      if (btn) {
-        btn.addEventListener('click', function() {
-          var current = html.getAttribute('data-theme');
-          var next;
-          if (current === 'dark') {
-            next = 'light';
-          } else if (current === 'light') {
-            next = scheme === 'auto' ? 'auto' : 'dark';
-          } else {
-            next = 'dark';
+      // System theme change listener
+      try {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+          var cur = loadTheme();
+          if (!cur || cur === 'auto') {
+            applyTheme('auto');
           }
-          localStorage.setItem('theme', next);
-          setTheme(next);
         });
-      }
+      } catch(e) {}
+
+      // Toggle function exposed globally
+      window.toggleTheme = function() {
+        var cur = html.getAttribute('data-theme');
+        var next;
+        if (cur === 'dark') {
+          next = 'light';
+        } else if (cur === 'light' && scheme === 'auto') {
+          next = 'auto';
+        } else if (cur === 'light') {
+          next = 'dark';
+        } else {
+          next = 'dark';
+        }
+        saveTheme(next);
+        applyTheme(next);
+      };
     })();
   </script>
 </body>
