@@ -20,3 +20,21 @@ highlight: github-dark
 
 # Post date format (moment.js)
 date_format: YYYY-MM-DD
+
+# Contact links (shown on homepage header)
+contacts:
+  - name: 抖音
+    icon: /img/douyin.png
+    url: https://www.iesdouyin.com/share/user/MS4wLjABAAAASLc5H3nRtZWRQpQCseTFhMSOk87Y6DpjL_PfkV3H1lbo2mthmZMBrgMNWQ0qHxT_
+  - name: 酷安
+    icon: /img/coolapk.png
+    url: https://www.coolapk.com/u/41212343
+  - name: GitHub
+    icon: /img/github.png
+    url: https://github.com/JetComX
+  - name: Telegram
+    icon: /img/telegram.png
+    url: https://t.me/JetComX
+  - name: Email
+    icon: /img/email.svg
+    url: mailto:3761666075@qq.com
