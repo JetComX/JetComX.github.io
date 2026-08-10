@@ -187,12 +187,11 @@ a:focus-visible {
 
 /* Theme toggle */
 .theme-toggle {
-  position: fixed;
-  top: var(--space-lg);
-  right: var(--space-lg);
-  z-index: 100;
-  width: 44px;
-  height: 44px;
+  position: absolute;
+  top: var(--space-md);
+  right: 0;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: 1px solid var(--md-outline-variant);
   background: var(--md-surface-container);
@@ -219,10 +218,20 @@ a:focus-visible {
 [data-theme="dark"] .icon-sun { display: none; }
 [data-theme="dark"] .icon-moon { display: block; }
 
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--md-primary);
+  outline-offset: 2px;
+}
+
+.icon-moon { display: none; }
+[data-theme="dark"] .icon-sun { display: none; }
+[data-theme="dark"] .icon-moon { display: block; }
+
 /* Header */
 .header {
   padding: var(--space-2xl) 0 var(--space-xl);
   text-align: center;
+  position: relative;
 }
 
 .site-title {
@@ -585,7 +594,19 @@ pre code {
   }
 
   .header {
-    padding: var(--space-xl) 0 var(--space-lg);
+    padding: var(--space-xl) var(--space-xl) var(--space-lg);
+  }
+
+  .theme-toggle {
+    top: var(--space-sm);
+    right: var(--space-sm);
+    width: 36px;
+    height: 36px;
+  }
+
+  .theme-toggle svg {
+    width: 20px;
+    height: 20px;
   }
 
   .post-header .post-title {
