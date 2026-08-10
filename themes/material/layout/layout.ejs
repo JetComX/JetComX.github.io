@@ -13,7 +13,6 @@
     (function(){
       var html = document.documentElement;
       var scheme = '<%= theme.color_scheme || "auto" %>';
-      var saved = localStorage.getItem('theme');
 
       function setTheme(t) {
         if (t === 'auto') {
@@ -24,30 +23,36 @@
         }
       }
 
-      if (saved) {
-        setTheme(saved);
-      } else if (scheme === 'auto') {
-        setTheme('auto');
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
-          if (!localStorage.getItem('theme') || localStorage.getItem('theme') === 'auto') {
-            html.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+      // Apply initial theme
+      var saved = localStorage.getItem('theme');
+      var initial = saved || scheme;
+      setTheme(initial);
+
+      // Listen for system changes when in auto mode
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+        var current = localStorage.getItem('theme');
+        if (!current || current === 'auto') {
+          html.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+        }
+      });
+
+      // Toggle button
+      var btn = document.getElementById('themeToggle');
+      if (btn) {
+        btn.addEventListener('click', function() {
+          var current = html.getAttribute('data-theme');
+          var next;
+          if (current === 'dark') {
+            next = 'light';
+          } else if (current === 'light') {
+            next = scheme === 'auto' ? 'auto' : 'dark';
+          } else {
+            next = 'dark';
           }
+          localStorage.setItem('theme', next);
+          setTheme(next);
         });
       }
-
-      document.getElementById('themeToggle').addEventListener('click', function() {
-        var current = html.getAttribute('data-theme');
-        var next;
-        if (current === 'dark') {
-          next = 'light';
-        } else if (current === 'light') {
-          next = scheme === 'auto' ? 'auto' : 'dark';
-        } else {
-          next = 'dark';
-        }
-        localStorage.setItem('theme', next);
-        setTheme(next);
-      });
     })();
   </script>
 </body>
