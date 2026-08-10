@@ -226,15 +226,6 @@ a:focus-visible {
 [data-theme="dark"] .icon-sun { display: none; }
 [data-theme="dark"] .icon-moon { display: block; }
 
-.theme-toggle:focus-visible {
-  outline: 2px solid var(--md-primary);
-  outline-offset: 2px;
-}
-
-.icon-moon { display: none; }
-[data-theme="dark"] .icon-sun { display: none; }
-[data-theme="dark"] .icon-moon { display: block; }
-
 /* Header */
 .header {
   padding: var(--space-2xl) 0 var(--space-xl);

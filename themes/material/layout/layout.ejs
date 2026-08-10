@@ -36,6 +36,14 @@
           currentTheme = t;
         }
         html.setAttribute('data-theme', currentTheme);
+        // Direct inline styles for guaranteed cross-browser background/text
+        if (currentTheme === 'dark') {
+          html.style.backgroundColor = '#1C1B1F';
+          html.style.color = '#E6E1E5';
+        } else {
+          html.style.backgroundColor = '#FFFBFE';
+          html.style.color = '#1C1B1F';
+        }
       }
 
       // Init
