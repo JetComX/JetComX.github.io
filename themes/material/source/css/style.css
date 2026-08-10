@@ -344,6 +344,7 @@ a:focus-visible {
   border-radius: var(--md-shape-corner-large);
   padding: var(--space-lg);
   box-shadow: var(--md-elevation-1);
+  cursor: pointer;
   transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
 }
 

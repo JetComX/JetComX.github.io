@@ -1,7 +1,7 @@
 <section class="post-list">
   <% page.posts.each(function(post) { %>
-  <article class="post-card">
-    <h2 class="post-title"><a href="<%- url_for(post.path) %>"><%= post.title %></a></h2>
+  <article class="post-card" onclick="location.href='<%- url_for(post.path) %>'">
+    <h2 class="post-title"><%= post.title %></h2>
     <time class="post-date" datetime="<%= date_xml(post.date) %>"><%= date(post.date, theme.date_format) %></time>
     <% if (theme.excerpt && post.excerpt) { %>
     <div class="post-excerpt"><%- post.excerpt %></div>
