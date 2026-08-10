@@ -185,6 +185,40 @@ a:focus-visible {
   flex-direction: column;
 }
 
+/* Theme toggle */
+.theme-toggle {
+  position: fixed;
+  top: var(--space-lg);
+  right: var(--space-lg);
+  z-index: 100;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--md-outline-variant);
+  background: var(--md-surface-container);
+  color: var(--md-on-surface-variant);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition), color var(--transition), box-shadow var(--transition);
+}
+
+.theme-toggle:hover {
+  background: var(--md-surface-container-highest);
+  color: var(--md-on-surface);
+  box-shadow: var(--md-elevation-1);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--md-primary);
+  outline-offset: 2px;
+}
+
+.icon-moon { display: none; }
+[data-theme="dark"] .icon-sun { display: none; }
+[data-theme="dark"] .icon-moon { display: block; }
+
 /* Header */
 .header {
   padding: var(--space-2xl) 0 var(--space-xl);
