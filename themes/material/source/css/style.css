@@ -343,12 +343,14 @@ a:focus-visible {
   background: var(--md-surface-container-low);
   border-radius: var(--md-shape-corner-large);
   padding: var(--space-lg);
-  transition: background var(--transition), box-shadow var(--transition);
+  box-shadow: var(--md-elevation-1);
+  transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
 }
 
 .post-card:hover {
   background: var(--md-surface-container);
-  box-shadow: var(--md-elevation-1);
+  box-shadow: var(--md-elevation-2);
+  transform: translateY(-2px);
 }
 
 .post-card .post-title {
