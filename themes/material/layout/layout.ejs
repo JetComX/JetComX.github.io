@@ -58,19 +58,10 @@
         });
       } catch(e) {}
 
-      // Toggle function exposed globally
+      // Toggle function exposed globally — simple light/dark only
       window.toggleTheme = function() {
         var cur = html.getAttribute('data-theme');
-        var next;
-        if (cur === 'dark') {
-          next = 'light';
-        } else if (cur === 'light' && scheme === 'auto') {
-          next = 'auto';
-        } else if (cur === 'light') {
-          next = 'dark';
-        } else {
-          next = 'dark';
-        }
+        var next = (cur === 'dark') ? 'light' : 'dark';
         saveTheme(next);
         applyTheme(next);
       };
