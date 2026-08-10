@@ -226,6 +226,33 @@ a:focus-visible {
 [data-theme="dark"] .icon-sun { display: none; }
 [data-theme="dark"] .icon-moon { display: block; }
 
+/* Post page header (minimal) */
+.post-page-header {
+  padding: var(--space-md) 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.post-page-header .theme-toggle {
+  position: static;
+}
+
+.back-link {
+  font: var(--md-typescale-label-large);
+  color: var(--md-on-surface-variant);
+  text-decoration: none;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--md-shape-corner-full);
+  transition: background var(--transition), color var(--transition);
+}
+
+.back-link:hover {
+  background: var(--md-surface-container-highest);
+  color: var(--md-on-surface);
+}
+
 /* Header */
 .header {
   padding: var(--space-2xl) 0 var(--space-xl);
