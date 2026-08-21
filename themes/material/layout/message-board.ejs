@@ -1,0 +1,43 @@
+<section class="message-board">
+  <header class="post-header">
+    <h1 class="post-title"><%= page.title %></h1>
+    <p class="post-excerpt">欢迎留下你的想法。提交后，留言会显示在本页面的公开列表中。</p>
+  </header>
+  <form class="message-form" id="messageForm">
+    <label>留下你的昵称<input name="nickname" maxlength="40" required placeholder="你的昵称"></label>
+    <label>留下你的联系方式（如果你愿意）<input name="contact" maxlength="120" placeholder="邮箱、社交账号等"></label>
+    <label>留言什么（内容）<textarea name="content" maxlength="1000" rows="5" required placeholder="写下你的留言"></textarea></label>
+    <button class="message-submit" type="submit">确定</button>
+  </form>
+  <section class="message-list" aria-live="polite">
+    <h2 class="message-list-title">公开留言</h2>
+    <div id="messages"></div>
+  </section>
+</section>
+<script>
+(function () {
+  var key = 'jetcomx-messages';
+  var form = document.getElementById('messageForm');
+  var list = document.getElementById('messages');
+  function escapeHtml(value) {
+    return value.replace(/[&<>"']/g, function (char) { return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]); });
+  }
+  function read() { try { return JSON.parse(localStorage.getItem(key) || '[]'); } catch (e) { return []; } }
+  function render() {
+    var messages = read();
+    list.innerHTML = messages.length ? messages.map(function (item) {
+      return '<article class="message-item"><div class="message-meta"><strong>' + escapeHtml(item.nickname) + '</strong><time>' + escapeHtml(item.date) + '</time></div><p>' + escapeHtml(item.content).replace(/\n/g, '<br>') + '</p>' + (item.contact ? '<small>' + escapeHtml(item.contact) + '</small>' : '') + '</article>';
+    }).join('') : '<p class="message-empty">暂时还没有留言，来留下第一条吧。</p>';
+  }
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    var data = new FormData(form);
+    var messages = read();
+    messages.unshift({ nickname: data.get('nickname').trim(), contact: data.get('contact').trim(), content: data.get('content').trim(), date: new Date().toLocaleString() });
+    localStorage.setItem(key, JSON.stringify(messages));
+    form.reset();
+    render();
+  });
+  render();
+}());
+</script>
